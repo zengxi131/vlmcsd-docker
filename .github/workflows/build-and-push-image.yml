@@ -15,15 +15,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    steps:
-    - name: Check Environment Variables
-      run: 
-        echo $ALIYUN_REGISTRY
-        echo $ALIYUN_NAME_SPACE
-        echo $ALIYUN_REGISTRY_USER
-        
-
     - name: Before freeing up disk space
       run: |
         echo "Before freeing up disk space"
@@ -61,12 +52,16 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
+    #- name: Login to Aliyun Docker Registry
+     # uses: docker/login-action@v1
+     # with:
+     #   registry: $ALIYUN_REGISTRY
+     #   username: $ALIYUN_REGISTRY_USER # 阿里云用户名或AccessKey ID
+     #   password: $ALIYUN_REGISTRY_PASSWORD # 阿里云密码或AccessKey Secret
     - name: Login to Aliyun Docker Registry
-      uses: docker/login-action@v1
-      with:
-        registry: $ALIYUN_REGISTRY
-        username: $ALIYUN_REGISTRY_USER # 阿里云用户名或AccessKey ID
-        password: $ALIYUN_REGISTRY_PASSWORD # 阿里云密码或AccessKey Secret
+      run: 
+        docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY
+
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
