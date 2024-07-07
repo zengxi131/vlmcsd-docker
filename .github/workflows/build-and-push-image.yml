@@ -77,4 +77,5 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/kmsserver:1.0.0
+        #tags: $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/kmsserver:1.0.0
+        tags: registry.cn-hangzhou.aliyuncs.com/zengxihome/kmsserver:1.0.0
