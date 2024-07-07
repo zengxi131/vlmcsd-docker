@@ -11,11 +11,19 @@ env:
   ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
   ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
 
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check Environment Variables
+      run: 
+        echo $ALIYUN_REGISTRY
+        echo $ALIYUN_NAME_SPACE
+        echo $ALIYUN_REGISTRY_USER
+        
+
     - name: Before freeing up disk space
       run: |
         echo "Before freeing up disk space"
