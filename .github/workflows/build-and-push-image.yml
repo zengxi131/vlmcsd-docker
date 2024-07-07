@@ -59,10 +59,17 @@ jobs:
     #    registry: $ALIYUN_REGISTRY
     #    username: $ALIYUN_REGISTRY_USER # 阿里云用户名或AccessKey ID
     #    password: $ALIYUN_REGISTRY_PASSWORD # 阿里云密码或AccessKey Secret
-    - name: Build and push image Aliyun
+    - name: Login to Aliyun Docker Registry
       run: |
         docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY
 
+    - name: Echo tags
+      run: |
+        echo "Echo tags"
+        echo "=============================================================================="
+        echo $ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/kmsserver:1.0.0
+        echo "=============================================================================="
+       
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
